@@ -9,7 +9,7 @@
     "leaflet": "^1.4.0",
     "moment": "^2.22.2",
     "react": "^16.8.6",
-    "react-cookies": "^0.1.0",
+    "react-cookies": "^0.1.1",
     "react-dom": "^16.8.6",
     "react-leaflet": "^2.2.1",
     "react-router-dom": "^4.2.2",
@@ -36,6 +36,8 @@
     "copy-build-logo": "copyfiles -f 'build/static/media/*' '../staticfiles/img/'",
     "copy-build-js": "copyfiles -f 'build/static/js/*.js' '../staticfiles/js/'",
     "copy-build-css": "copyfiles -f 'build/static/css/*.css' '../staticfiles/css/'",
-    "collectstatic": "python ../manage.py collectstatic --no-input"
+    "collectstatic": "python ../manage.py collectstatic --no-input",
+    "singlePath": "rc-autocomplete --src 'node_modules/react-toolbox/components/**/*.js'",
+    "generate": "rc-autocomplete"
   }
 }
