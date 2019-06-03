@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'whatwg-fetch'
 import cookie from 'react-cookies'
 import Banner from './Banner/Banner';
+import TitleButton from './TitleButton/TitleButton';
 import BasinChart from './BasinChart';
 import TimeChart from './TimeChart';
 import PictureChart from './PictureChart';
@@ -59,63 +60,54 @@ ClassName
       const {show} = this.state
       const {item} = this.state
       const {data} = this.state
-      function isEmpty(obj) {
+      function nameItem(obj) {
           for(var key in obj) {
               if(obj.hasOwnProperty(key))
                   return obj.nombre;
           }
           return '';
-      }
+      };
     return (
         <div className = "container">
           <div className = "col-sm-12">
             <Banner/>
           </div>
           <div className="col-sm-6">
-            <br/>
-            <br/>
-            <div className="station-title">
-              {isEmpty(item)}
-            </div>
+            <TitleButton title= {nameItem(item)}/>
           </div>
-          <div className = "row">
-            <div id = 'timechart-row' className ='col-sm-5'>
-              <WaterLevelChart data = {data} parameter = {'water_level'} color = {"#4C90CD"} />
-              <RadarRainChart data = {data} parameter = {'radar_rain'} color = {"#008b8b"}/>
-              <VideoChart camera_path = {item.camera_path}/>
-            </div>
-            <div id = 'picturechart-row' className ='col-sm-3'>
-              <PictureChart path={item.water_level_history_path} title={"Histórico de hidrógrafas"}/>
-              <PictureChart path={item.radar_rain_history_path} title={"Histórico de eventos de lluvia"}/>
-              <PictureChart path={item.statistical_model_path} title={"Modelo estadístico"}/>
-            </div>
-            <div id = 'container' className ='col-sm-4'>
-              <div className="chart-wrapper">
-                <div className="chart-title">
-                  Mapa
-                </div>
-                <div className="chart-stage">
-                  <div>
-                    <MapChart item = {item}/>
+          <div className="col-sm-12">
+            <div className = "row">
+              <div id = 'timechart-row' className ='col-sm-5'>
+                <WaterLevelChart data = {data} parameter = {'water_level'} color = {"#4C90CD"} />
+                <RadarRainChart data = {data} parameter = {'radar_rain'} color = {"#008b8b"}/>
+                <VideoChart camera_path = {item.camera_path}/>
+              </div>
+              <div id = 'picturechart-row' className ='col-sm-3'>
+                <PictureChart path={item.water_level_history_path} title={"Histórico de hidrógrafas"}/>
+                <PictureChart path={item.radar_rain_history_path} title={"Histórico de eventos de lluvia"}/>
+                <PictureChart path={item.statistical_model_path} title={"Modelo estadístico"}/>
+              </div>
+              <div id = 'container' className ='col-sm-4'>
+                <div className="chart-wrapper">
+                  <div className="chart-title">
+                    Mapa
+                  </div>
+                  <div className="chart-stage">
+                    <div>
+                      <MapChart item = {item}/>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div id='basinchart'>
-            <BasinChart show = {show} click={this.toogleItem}/>
+            <div id='basinchart'>
+              <BasinChart show = {show} click={this.toogleItem}/>
+            </div>
           </div>
         </div>
     );
   }
 }
-
-<div class="row">
-  <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
-  <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
-  <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
-</div>
-
 
 
 export default BasinManager;

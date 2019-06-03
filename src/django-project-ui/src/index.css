@@ -38,17 +38,6 @@ body {
   padding: 8px 10px 5px;
 }
 
-.station-title {
-  border-bottom: 1px solid lightgray;
-  color: white;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  font-size: 22px;
-  font-weight: 500;
-  background: #9dbd52;
-  padding: 7px 40px 4px;
-}
-
 .leaflet-container {
     height: 570px;
     width: 540px;
