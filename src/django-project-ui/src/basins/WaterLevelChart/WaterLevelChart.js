@@ -41,7 +41,7 @@ class WaterLevelChart extends Component {
     var minDate = data[0]["date"]
     var maxDate = data[30]["date"]
     var maxValue = Math.max.apply(Math, data.map(function(o) { return o[parameter]; }))
-    var xScale = d3.scaleTime().domain([new Date(minDate),new Date(maxDate)]).range([0,width]);
+    var xScale = d3.scaleTime().domain([new Date(minDate),new Date(maxDate)]).range([0,width-10]);
     var yScale = d3.scaleLinear().domain([0,maxValue*1.5]).range([height,0]);
     var lineGenerator = d3.line()
     	.x(function(d, i) {
@@ -98,6 +98,35 @@ class WaterLevelChart extends Component {
        .style("fill",color)
        .style("opacity","0.5");
     var ypos = height+margin.top;
+
+    var div = d3.select("#"+parameter).append("div")
+        .attr("class", "tooltip")
+        .style("opacity", "1.0");
+
+    console.log(div)
+
+    svg.selectAll("dot")
+        .data(data)
+    .enter().append("circle")
+        .attr("r", 5)
+        .attr("cx", function(d) { return xScale(d.date); })
+        .attr("cy", function(d) { return yScale(d[parameter]); })
+        .attr("transform", "translate("+margin.left*3.0 + "," + margin.top + ")")
+        .style("fill",color)
+        .style("opacity","0.0")
+        .on("mouseover", function(d) {
+            var string = "<p>"+d.hour+" - "+d[parameter]+" cm <p>";
+            console.log("y = "+d3.event.pageY)
+            div.html(string)
+                .style("left", (200) + "px")
+                .style("top", (0) + "px")
+                ;
+            })
+        .on("mouseout", function(d) {
+            div.transition()
+                .duration(100)
+                .style("opacity", 0.9);
+        });
 
     var axG = svg.append("g")
          .attr("class", "x axis")
