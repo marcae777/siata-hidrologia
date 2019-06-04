@@ -8,7 +8,7 @@ import TimeChart from './TimeChart';
 import PictureChart from './PictureChart';
 import MapChart from './MapChart';
 import VideoChart from './VideoChart';
-import WaterLevelChart from './WaterLevelChart';
+import WaterLevelChart from './WaterLevelChart/WaterLevelChart';
 import RadarRainChart from './RadarRainChart';
 import WaterSurfaceVelocityChart from './WaterSurfaceVelocityChart';
 
@@ -78,9 +78,15 @@ ClassName
           <div className="col-sm-12">
             <div className = "row">
               <div id = 'timechart-row' className ='col-sm-5'>
-                <WaterLevelChart data = {data} parameter = {'water_level'} color = {"#4C90CD"} />
-                <RadarRainChart data = {data} parameter = {'radar_rain'} color = {"#008b8b"}/>
-                <VideoChart camera_path = {item.camera_path}/>
+                <div>
+                  <WaterLevelChart data = {data} parameter = {'water_level'} color = {"#4C90CD"} />
+                </div>
+                <div>
+                  <RadarRainChart data = {data} parameter = {'radar_rain'} color = {"#008b8b"}/>
+                </div>
+                <div>
+                  <VideoChart camera_path = {item.camera_path}/>
+                </div>
               </div>
               <div id = 'picturechart-row' className ='col-sm-3'>
                 <PictureChart path={item.water_level_history_path} title={"Histórico de hidrógrafas"}/>
