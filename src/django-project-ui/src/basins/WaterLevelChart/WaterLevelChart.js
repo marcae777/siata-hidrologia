@@ -105,7 +105,7 @@ class WaterLevelChart extends Component {
 
     console.log(div)
 
-    svg.selectAll("dot")
+    svg.selectAll("#"+parameter)
         .data(data)
     .enter().append("circle")
         .attr("r", 5)
